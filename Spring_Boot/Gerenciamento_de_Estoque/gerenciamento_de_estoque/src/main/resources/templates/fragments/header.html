@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    .senai-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .senai-logo {
+        height: 40px;
+    }
+</style>
+<body>
+<header th:fragment="header" class="senai-header">
+    <div class="senai-shell">
+        <a class="senai-brand" th:href="@{/}">
+            <img th:src="@{/img/download.png}" alt="Logo SENAI" class="senai-logo">
+            <span class="senai-brand-text">SENAI-SP | Sistema de Estoque e Patrimônio</span>
+        </a>
+        <nav class="senai-nav">
+            <a class="senai-link" th:href="@{/materiais}">Materiais</a>
+            <a class="senai-link" th:href="@{/categorias}">Categorias</a>
+            <a class="senai-link" th:href="@{/movimentacoes}">Movimentações</a>
+            <a class="senai-link" th:href="@{/ativos}">Ativos</a>
+            <a class="senai-link" th:href="@{/cadastro}">Cadastro</a>
+            <a class="senai-button" th:href="@{/login}">Login</a>
+        </nav>
+    </div>
+</header>
+</body>
+</html>     

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Material | SENAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="justify-content:center;">
+                <div class="senai-card" style="width:100%; max-width:520px;">
+                    <h1 class="senai-title" style="font-size:22px;">Novo Material</h1>
+
+                    <form th:action="@{/materiais/salvar}" method="post" class="senai-form">
+                        <input type="hidden" name="id" th:value="${material.id}"/>
+
+                        <label class="senai-label">Nome</label>
+                        <input class="senai-input" type="text" name="nome" th:value="${material.nome}" placeholder="Nome do material" required/>
+
+                        <label class="senai-label">Descrição</label>
+                        <input class="senai-input" type="text" name="descricao" th:value="${material.descricao}" placeholder="Descrição"/>
+
+                        <label class="senai-label">Quantidade</label>
+                        <input class="senai-input" type="number" name="quantidade" th:value="${material.quantidade != null ? material.quantidade : 0}" min="0"/>
+
+                        <label class="senai-label">Quantidade Mínima</label>
+                        <input class="senai-input" type="number" name="quantidadeMinima" th:value="${material.quantidadeMinima != null ? material.quantidadeMinima : 5}" min="0"/>
+
+                        <label class="senai-label">Categoria</label>
+                        <select class="senai-input" name="categoriaId">
+                            <option value="">Selecione...</option>
+                            <option th:each="cat : ${categorias}"
+                                    th:value="${cat.id}"
+                                    th:text="${cat.nome}"
+                                    th:selected="${material.categoria != null && material.categoria.id == cat.id}">
+                            </option>
+                        </select>
+
+                        <button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+                        <a class="senai-link" th:href="@{/materiais}" style="margin-top:8px; display:block; text-align:center;">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

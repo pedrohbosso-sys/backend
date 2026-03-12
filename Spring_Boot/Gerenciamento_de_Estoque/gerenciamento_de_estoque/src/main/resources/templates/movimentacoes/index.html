@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Movimentações | SENAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="flex-direction:column; align-items:flex-start;">
+                <div th:if="${erro}" class="senai-alert senai-alert-error" style="margin-bottom:16px; width:100%;">
+                    <p th:text="${erro}"></p>
+                </div>
+                <div th:if="${sucesso}" class="senai-alert senai-alert-success" style="margin-bottom:16px; width:100%;">
+                    <p th:text="${sucesso}"></p>
+                </div>
+                
+                <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                    <h1 class="senai-title">Movimentações</h1>
+                    <a class="senai-button" th:href="@{/movimentacoes/nova}">+ Nova Movimentação</a>
+                </div>
+
+                <table style="width:100%; margin-top:20px; border-collapse:collapse;">
+                    <thead>
+                        <tr style="background:#E30613; color:white;">
+                            <th style="padding:12px; text-align:left;">Material</th>
+                            <th style="padding:12px; text-align:left;">Tipo</th>
+                            <th style="padding:12px; text-align:left;">Quantidade</th>
+                            <th style="padding:12px; text-align:left;">Data</th>
+                            <th style="padding:12px; text-align:left;">Observação</th>
+                            <th style="padding:12px; text-align:left;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="mov : ${movimentacoes}" style="border-bottom:1px solid #E5E7EB;">
+                            <td style="padding:10px;" th:text="${mov.material != null ? mov.material.nome : '-'}"></td>
+                            <td style="padding:10px;" th:text="${mov.tipo}"></td>
+                            <td style="padding:10px;" th:text="${mov.quantidade}"></td>
+                            <td style="padding:10px;" th:text="${mov.dataMovimentacao}"></td>
+                            <td style="padding:10px;" th:text="${mov.observacao}"></td>
+                            <td style="padding:10px;">
+                                <a style="color:#E30613;" th:href="@{/movimentacoes/deletar/{id}(id=${mov.id})}">Deletar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ativo | SENAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="justify-content:center;">
+                <div class="senai-card" style="width:100%; max-width:520px;">
+                    <h1 class="senai-title" style="font-size:22px;">Novo Ativo Patrimonial</h1>
+
+                    <form th:action="@{/ativos/salvar}" th:object="${ativo}" method="post" class="senai-form">
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <label class="senai-label">Número de Patrimônio</label>
+                        <input class="senai-input" type="text" th:field="*{numeroPatrimonio}" placeholder="Ex: PAT-001" required/>
+
+                        <label class="senai-label">Descrição</label>
+                        <input class="senai-input" type="text" th:field="*{descricao}" placeholder="Descrição do ativo"/>
+
+                        <label class="senai-label">Localização</label>
+                        <input class="senai-input" type="text" th:field="*{localizacao}" placeholder="Ex: Laboratório 3"/>
+
+                        <label class="senai-label">Status</label>
+                        <select class="senai-input" th:field="*{status}">
+                            <option value="">Selecione...</option>
+                            <option value="ATIVO">ATIVO</option>
+                            <option value="INATIVO">INATIVO</option>
+                            <option value="MANUTENCAO">MANUTENÇÃO</option>
+                        </select>
+
+                        <label class="senai-label">Data de Aquisição</label>
+                        <input class="senai-input" type="date" th:field="*{dataAquisicao}"/>
+
+                        <label class="senai-label">Valor de Aquisição</label>
+                        <input class="senai-input" type="number" th:field="*{valorAquisicao}" step="0.01" min="0" placeholder="0.00"/>
+
+                        <button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+                        <a class="senai-link" th:href="@{/ativos}" style="margin-top:8px; display:block; text-align:center;">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

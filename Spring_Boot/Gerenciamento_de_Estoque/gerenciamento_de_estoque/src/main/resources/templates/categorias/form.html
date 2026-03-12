@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Categoria | SENAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="justify-content:center;">
+                <div class="senai-card" style="width:100%; max-width:520px;">
+                    <h1 class="senai-title" style="font-size:22px;">Nova Categoria</h1>
+
+                    <form th:action="@{/categorias/salvar}" th:object="${categoria}" method="post" class="senai-form">
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <label class="senai-label">Nome</label>
+                        <input class="senai-input" type="text" th:field="*{nome}" placeholder="Nome da categoria" required/>
+
+                        <label class="senai-label">Descrição</label>
+                        <input class="senai-input" type="text" th:field="*{descricao}" placeholder="Descrição"/>
+
+                        <button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+                        <a class="senai-link" th:href="@{/categorias}" style="margin-top:8px; display:block; text-align:center;">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+</html>

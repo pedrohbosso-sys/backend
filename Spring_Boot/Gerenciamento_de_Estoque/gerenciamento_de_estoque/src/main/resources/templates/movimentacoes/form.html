@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Movimentação | SENAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+
+    <main class="senai-main">
+        <section class="senai-hero">
+            <div class="senai-shell" style="justify-content:center;">
+                <div class="senai-card" style="width:100%; max-width:520px;">
+                    <h1 class="senai-title" style="font-size:22px;">Nova Movimentação</h1>
+
+                    <form action="/movimentacoes/salvar" method="post" class="senai-form">
+
+                        <label class="senai-label">Material</label>
+                        <select class="senai-input" name="materialId" required>
+                            <option value="">Selecione...</option>
+                            <option th:each="mat : ${materiais}"
+                                    th:value="${mat.id}"
+                                    th:text="${mat.nome}"></option>
+                        </select>
+
+                        <label class="senai-label">Tipo</label>
+                        <select class="senai-input" name="tipo" required>
+                            <option value="">Selecione...</option>
+                            <option value="ENTRADA">ENTRADA</option>
+                            <option value="SAIDA">SAÍDA</option>
+                        </select>
+
+                        <label class="senai-label">Quantidade</label>
+                        <input class="senai-input" type="number" name="quantidade" min="1" required/>
+
+                        <label class="senai-label">Observação</label>
+                        <input class="senai-input" type="text" name="observacao" placeholder="Observação"/>
+
+                        <button class="senai-button" type="submit" style="width:100%; margin-top:12px;">Salvar</button>
+                        <a class="senai-link" href="/movimentacoes" style="margin-top:8px; display:block; text-align:center;">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:insert="~{fragments/header :: header}"></div>
+</body>
+</html>
